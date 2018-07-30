@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Codesleeve\\Stapler\\": "src/"
+            "astrnt\\Stapler\\": "src/"
         }
     },
     "minimum-stability": "dev"
