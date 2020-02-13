@@ -131,7 +131,14 @@ class Attachment implements AttachmentInterface, JsonSerializable
         $this->uploadedFile = FileFactory::create($uploadedFile);
         $this->instanceWrite('file_name', $this->uploadedFile->getFilename());
         $this->instanceWrite('file_size', $this->uploadedFile->getSize());
-        $this->instanceWrite('content_type', $this->uploadedFile->getMimeType());
+        $mime = $this->uploadedFile->getMimeType();
+
+        $ext = substr($this->uploadedFile->getFilename(), -3);
+        if(strtolower($ext) == 'csv' && $this->uploadedFile->getMimeType() == 'text/plain'){
+            $mime = 'text/csv';
+        }
+
+        $this->instanceWrite('content_type', $mime);
         $this->instanceWrite('updated_at', new DateTime);
         $this->queueAllForWrite();
     }
