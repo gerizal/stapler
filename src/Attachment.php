@@ -135,7 +135,7 @@ class Attachment implements AttachmentInterface, JsonSerializable
 
         $ext = substr($this->uploadedFile->getFilename(), -3);
         if(strtolower($ext) == 'csv' && $this->uploadedFile->getMimeType() == 'text/plain'){
-            $mime = 'text/csv';
+            $mime = 'text/csv'; //csv bug
         }
 
         $this->instanceWrite('content_type', $mime);
